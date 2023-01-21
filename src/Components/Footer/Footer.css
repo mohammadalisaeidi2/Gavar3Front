@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: IRANSans;
+    font-family: Vazir-Medium;
   }
   
   .footer-subscription {
@@ -21,7 +21,7 @@
   }
   
   .footer-subscription > p {
-    font-family: IRANSans
+    font-family: Vazir-Medium;
   }
   
   .footer-subscription-heading {
@@ -43,7 +43,7 @@
     font-size: 18px;
     margin-bottom: 16px;
     border: 1px solid #cccccc;
-    font-family: IRANSans;
+    font-family: Vazir-Medium;
   }
   
   .footer-links {
@@ -96,7 +96,7 @@
   
   /* Social Icons */
   .social-icon-link {
-    color: #666;
+    color: #454545;
     font-size: 24px;
   }
   
@@ -116,7 +116,7 @@
   
   .social-icons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 240px;
   }
