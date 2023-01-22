@@ -8,15 +8,15 @@ import "slick-carousel/slick/slick-theme.css";
 
 const useStyle = makeStyles((theme) => ({
     slider:{
-        width:"900px",
-        height:"506px",
-        margin:"20px auto",
+        width:"90vw",
+        height:"85vh",
+        margin:"90px auto",
         backgroundColor:"#eee",
         borderRadius:"10px"
     },
     slide:{
-        width: "900px",
-        height: "506px",
+        width: "90vw",
+        height: "85vh",
         objectFit: "auto",
         margin:"0 auto",
         borderRadius:"10px",
