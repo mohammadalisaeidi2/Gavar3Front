@@ -68,7 +68,7 @@ function LoginForm() {
                         </Link>
                     </p>
                     <p > حساب کاربری ندارید؟
-                        <Link href="#" >
+                        <Link href="/signup" >
                             ساخت حساب کاربری
                         </Link>
                     </p>
