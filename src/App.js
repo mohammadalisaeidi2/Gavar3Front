@@ -7,10 +7,13 @@ import LoginForm from './Components/Login/Login';
 import Home from './Pages/Home';
 import SignUpForm from './Components/SignUp/SignUp';
 import { createTheme, ThemeProvider } from '@material-ui/core';
+import AdminLoginForm from './Components/AdminLogin/AdminLogin';
+import AdminPanel from './Pages/AdminPanel/AdminPanel';
+import AddProduct from './Components/AdminPanelComponents/AddProduct/AddProduct';
 
 function App() {
   const theme = createTheme({
-    direction:"rtl",
+    direction: "rtl",
     typography: {
       fontFamily: ['Vazir-Medium']
     }
@@ -25,7 +28,10 @@ function App() {
           <Routes>
             <Route path='/' exact element={<Home />} />
             <Route path='/login' exact element={<LoginForm />} />
+            <Route path='/adminlogin' exact element={<AdminLoginForm />} />
             <Route path='/signup' exact element={<SignUpForm />} />
+            <Route path='/adminpanel' exact element={<AdminPanel />} />
+            <Route path='/adminpanel/addproduct' exact element={<AddProduct />} />
           </Routes>
           <Footer />
         </Router>

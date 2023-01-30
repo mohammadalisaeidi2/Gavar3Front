@@ -44,13 +44,16 @@ function SliderImage() {
         <div>
             <Slider {...settings} className={classes.slider}> 
                 <div>
-                    <img src="https://images.pexels.com/photos/6474922/pexels-photo-6474922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className={classes.slide}/>
+                    <img src="Images/2.jpg" className={classes.slide}/>
                 </div>
                 <div>
-                    <img src="https://images.pexels.com/photos/5442465/pexels-photo-5442465.jpeg?auto=compress&cs=tinysrgb&w=600" className={classes.slide}/>
+                    <img src="Images/1.jpeg" className={classes.slide}/>
                 </div>
                 <div>
-                    <img src="https://images.pexels.com/photos/1670723/pexels-photo-1670723.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className={classes.slide}/>
+                    <img src="Images/3.jpg" className={classes.slide}/>
+                </div>
+                <div>
+                    <img src="Images/4.jpeg" className={classes.slide}/>
                 </div>
                 <div>
                     <h3>اسلاید</h3>

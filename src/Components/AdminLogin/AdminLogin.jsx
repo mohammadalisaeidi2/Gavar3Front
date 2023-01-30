@@ -20,11 +20,11 @@ const useStyle = makeStyles((theme) => ({
     succesAlert:{
         marginTop:'10vh',
         margin:'auto',
-        maxWidth:'30vw',
+        maxWidth:'40vw',
     },
     errorAlert:{
         margin:'auto',
-        maxWidth:'30vw',
+        maxWidth:'40vw',
     },
     avatarStyle: {
         backgroundColor: '#1bbd7e',
@@ -48,30 +48,34 @@ const useStyle = makeStyles((theme) => ({
 
 
 
-function LoginForm() {
+function AdminLoginForm() {
     const classes = useStyle();
-    const [userEmail, setUserEmail] = useState("");
-    const [userPassword, setUserPassword] = useState("");
+    const [adminUsername, setAdminUsername] = useState("");
+    const [adminPassword, setAdminPassword] = useState("");
     const [loginReq] = useFetch();
     const navigate = useNavigate();
     const onLogin = (event) => {
         console.log("onLogin function")
         event.preventDefault();
         loginReq({
-            url: `/api/user/login`,
+            url: `/api/admin/login`,
             method: "POST",
             data: {
-                userEmail,
-                userPassword
+                adminUsername,
+                adminPassword
             }
         }).then(res => {
+
             localStorage.setItem("auth-token", res)
-            console.log(res)
+            console.log(res);
             //navigate("/");
+
+
             window.location.reload();
         }).catch(exp => {
-            console.log(JSON.stringify(exp))
+            console.log(JSON.stringify(exp));
             // Todo: use toast
+
             alert("incorrect username or password.")
         })
     }
@@ -82,7 +86,7 @@ function LoginForm() {
     return (
         <Grid>
             <Alert Alert variant="filled" severity="success" className={classes.succesAlert}>
-                با موفقیت وارد شدید
+                      با موفقیت وارد شدید    
             </Alert >
             <Alert variant="filled" severity="error" className={classes.errorAlert}>
                 نام کاربری یا رمزعبور اشتباه است
@@ -90,23 +94,23 @@ function LoginForm() {
             <Paper elevation={5} className={classes.paperStyle} >
                 <Grid align='center' direction='rtl'>
                     <Avatar className={classes.avatarStyle}><LockOutlinedIcon /></Avatar>
-                    <h2>ورود به حساب کاربری</h2>
+                    <h2>ورود ادمین</h2>
                 </Grid>
                 <div className={classes.inputs}>
                     <TextField
                         variant='outlined'
-                        label='ایمیل '
-                        placeholder='example@info.com'
+                        label='نام کاربری'
+                        placeholder='نام کاربری را وارد کنید'
                         fullWidth required className={classes.input}
-                        onInput={e => { setUserEmail(e.target.value) }}
+                        onInput={e => { setAdminUsername(e.target.value) }}
                     />
                     <TextField
                         variant='outlined'
                         label='رمز عبور'
-                        placeholder=''
+                        placeholder='رمزعبور را وارد کنید'
                         type='password'
                         fullWidth required className={classes.input}
-                        onInput={e => { setUserPassword(e.target.value) }}
+                        onInput={e => { setAdminPassword(e.target.value) }}
                     />
                 </div>
                 <Button
@@ -117,30 +121,9 @@ function LoginForm() {
                     fullWidth
                     onClick={onLogin}>ورود
                 </Button>
-                <div className={classes.options}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                name="checkedB"
-                                color="primary"
-                            />
-                        }
-                        label="مرا به خاطر بسپار"
-                    />
-                    <p >
-                        <Link href="#" >
-                            رمز خود را فراموش کرده اید؟
-                        </Link>
-                    </p>
-                    <p > حساب کاربری ندارید؟
-                        <Link href="/signup" >
-                            ساخت حساب کاربری
-                        </Link>
-                    </p>
-                </div>
             </Paper>
         </Grid>
     )
 }
 
-export default LoginForm
+export default AdminLoginForm

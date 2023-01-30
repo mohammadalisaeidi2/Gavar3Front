@@ -32,6 +32,7 @@ const useStyle = makeStyles((theme) => ({
         display: "flex",
         marginLeft: "3%"
     },
+
     navbarIcons: {
         marginRight: "36vw",
         display: "flex",
