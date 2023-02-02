@@ -1,6 +1,54 @@
 .container{
-    height: 100vh;
+    justify-content: center;
+
+}
+.sidebar-container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 15vh;
+    height: 80vh;
+    width: 20vw;
+    border-radius: 30px;
+    background-color: rgb(227, 227, 255);
+}
+.component-container{
     width: 80vw;
     margin-right: 20vw;
-    background-color: antiquewhite;
+    margin-top: 10vh;
+    padding:30px 0px;
+    background-color: rgb(246, 246, 246);
+    border-radius: 10px;
+    
+}
+.menu-items{
+    margin-top: 70%;
+    list-style-type: none;
+    justify-items: center;
+}
+.menu-items :hover{
+    background-color: rgb(193, 192, 143);
+    
+
+}
+.menu-item{
+    margin-right: 40px;
+    margin-bottom: 40px;
+    border: 1px solid;
+    display: block;
+    font-size: 18px;
+    height: 50px;
+    width: 200px;
+    padding: 0;
+    text-align: right;
+    border-radius: 5px;
+}
+.menu-icon{
+    color: #454545;
+    margin-top:5px ;
+    margin-left: 10px;
+
+}
+.menu-title{
+    margin-top: 0;
 }

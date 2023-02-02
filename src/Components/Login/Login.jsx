@@ -65,7 +65,7 @@ function LoginForm() {
                 userPassword
             }
         }).then(res => {
-            localStorage.setItem("auth-token", res)
+            localStorage.setItem("token", res)
             console.log(res)
             //navigate("/");
             window.location.reload();

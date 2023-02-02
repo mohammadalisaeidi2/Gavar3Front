@@ -28,7 +28,7 @@ function Footer() {
                         <h2>دسترسی سریع</h2>
                         <Link>راهنمای سایز</Link>
                         <Link> قیمت طا</Link>
-                        <Link>ورود ادمین</Link>
+                        <Link to='/adminlogin'>ورود ادمین</Link>
                     </div>
                     <div className='footer-link-items'>
                         <h2>شبکه اجتماعی</h2>

@@ -2,6 +2,7 @@ import { alpha, AppBar, Button, InputBase, makeStyles, Toolbar, Typography } fro
 import { ExpandMore, Menu, Person, Search, ShoppingCart } from "@material-ui/icons"
 import { Link } from "react-router-dom";
 import logo from './logo.png'
+import ProductList from "./ProductList";
 const useStyle = makeStyles((theme) => ({
     appbar: {
         backgroundColor: "transparent",
@@ -50,6 +51,7 @@ function Navbar2() {
     const classes = useStyle();
     return (
         <div>
+            
             <AppBar position="static" dir="rtl" className={classes.appbar}>
                 <Toolbar className={classes.navbarContainer}>
                     <Link to='/' className={classes.navbarLogo}>
@@ -59,7 +61,7 @@ function Navbar2() {
                         <p>محصولات ما </p>
                         <ExpandMore style={{ color: '#454545', marginRight: "5px" }} />
                     </Link>
-                    <Link className={classes.navbarItem}>
+                    <Link className={classes.navbarItem} to='/prices'>
                         <p > قیمت روز طلا</p>
                     </Link>
                     <Link className={classes.navbarItem}>

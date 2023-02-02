@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Navbar from './Components/Navbar/Navbar';
+
 import Navbar2 from './Components/Navbar/Navbar2';
 import Footer from './Components/Footer/Footer';
 import LoginForm from './Components/Login/Login';
@@ -10,7 +10,8 @@ import { createTheme, ThemeProvider } from '@material-ui/core';
 import AdminLoginForm from './Components/AdminLogin/AdminLogin';
 import AdminPanel from './Pages/AdminPanel/AdminPanel';
 import AddProduct from './Components/AdminPanelComponents/AddProduct/AddProduct';
-
+import AdminManageProducts from './Components/AdminPanelComponents/AdminManageProducts/AdminManageProducts';
+import Prices from './Pages/Prices/Prices';
 function App() {
   const theme = createTheme({
     direction: "rtl",
@@ -32,6 +33,8 @@ function App() {
             <Route path='/signup' exact element={<SignUpForm />} />
             <Route path='/adminpanel' exact element={<AdminPanel />} />
             <Route path='/adminpanel/addproduct' exact element={<AddProduct />} />
+            <Route path='/adminpanel/manageproducts' exact element={<AdminManageProducts />} />
+            <Route path='/prices' exact element={<Prices />} />
           </Routes>
           <Footer />
         </Router>

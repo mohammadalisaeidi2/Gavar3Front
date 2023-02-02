@@ -11,11 +11,11 @@ const useStyle = makeStyles((theme) => ({
 
   paperStyle: {
     padding: '30px',
-    width: '60vw',
-    margin: "20px auto",
+    width: '70vw',
+    margin: "0px auto",
     borderRadius: "10px",
     fontFamily: "Vazir-Medium",
-    marginTop: "20vh",
+    
     flexGrow: '1',
 
   },
@@ -115,6 +115,7 @@ const useStyle = makeStyles((theme) => ({
 
 function AddProduct() {
   const [addReq] = useFetch();
+  const [token] = localStorage.getItem('auth-token')
   const [productTitle, setProductTitle] = useState("");
   const [productDetile, setProductDetile] = useState("");
   const [productInfo, setProductInfo] = useState("");
@@ -127,6 +128,8 @@ function AddProduct() {
   const [productSex, setProductSex] = useState("");
   const [productHasStone, setProductHasStone] = useState("");
   const [tmpAvailablity, setTmpAvailablity] = useState({ "size": "", "wegiht": "" })
+  var productScore = 5
+  
 
   const classes = useStyle();
 
@@ -136,10 +139,10 @@ function AddProduct() {
   }
 
   const onSubmit = (event) => {
-    console.log("onLogin function")
+    console.log("onSubmit function")
     event.preventDefault();
     addReq({
-      url: `/api/admin/login`,
+      url: `/api/product/add`,
       method: "POST",
       data: {
         productTitle,
@@ -152,8 +155,13 @@ function AddProduct() {
         productBrand,
         productWages,
         productSex,
-        productHasStone
-      }
+        productHasStone,
+        productScore
+      },
+      headers:{
+        'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2JhODZlYjlhMGMyN2EwYzQ2MjY4ZDYiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzUxNTg4NTgsImV4cCI6MTY3NTE2MDA1OH0.3Wbe8GRwq7XTW-HBRqGtbaBRrTKrakLJmi4IaTarzSw',
+
+      },
     }).then(res => {
 
       console.log("ADDED !!")
@@ -266,8 +274,8 @@ function AddProduct() {
               onChange={e => { setProductHasStone(e.target.value) }}
             >
               <MenuItem value=''> </MenuItem>
-              <MenuItem value='rose'> بله</MenuItem>
-              <MenuItem value='silver'>خیر</MenuItem>
+              <MenuItem value='true'> بله</MenuItem>
+              <MenuItem value='false'>خیر</MenuItem>
             </Select>
           </FormControl>
         </Grid>

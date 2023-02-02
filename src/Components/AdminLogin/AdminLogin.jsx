@@ -3,7 +3,7 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, Link, makeStyles } 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { Alert } from '@material-ui/lab'
 
@@ -13,22 +13,26 @@ const useStyle = makeStyles((theme) => ({
         padding: '30px',
         height: '70vh',
         width: '30vw',
-        margin: "20px auto",
+        margin: "15vh auto",
         borderRadius: "10px",
         fontFamily: "Vazir-Medium"
     },
-    succesAlert:{
-        marginTop:'10vh',
-        margin:'auto',
-        maxWidth:'40vw',
+    succesAlert: {
+        marginTop: '10px',
+        margin: 'auto',
+        maxWidth: '40vw',
+        justifyContent:'center'
     },
-    errorAlert:{
-        margin:'auto',
-        maxWidth:'40vw',
+    errorAlert: {
+        marginBottom: '20px',
+        textAlign:'center',
+        justifyContent:'center'
+  
     },
     avatarStyle: {
         backgroundColor: '#1bbd7e',
-        marginBottom: "30px"
+        marginBottom: "30px",
+        marginTop:'40px'
     },
     btnstyle: {
         margin: '8px 0'
@@ -52,8 +56,13 @@ function AdminLoginForm() {
     const classes = useStyle();
     const [adminUsername, setAdminUsername] = useState("");
     const [adminPassword, setAdminPassword] = useState("");
+    const [showError, setShowError] = useState(false);
+    const [showCorrect, setShowCorrect] = useState(false);
     const [loginReq] = useFetch();
     const navigate = useNavigate();
+
+
+
     const onLogin = (event) => {
         console.log("onLogin function")
         event.preventDefault();
@@ -65,18 +74,14 @@ function AdminLoginForm() {
                 adminPassword
             }
         }).then(res => {
-
-            localStorage.setItem("auth-token", res)
-            console.log(res);
-            //navigate("/");
-
-
-            window.location.reload();
+            setShowError(false)
+            setShowCorrect(true)
+            localStorage.setItem("admin-token", res)
+            navigate('/adminpanel')
         }).catch(exp => {
             console.log(JSON.stringify(exp));
-            // Todo: use toast
-
-            alert("incorrect username or password.")
+            setShowCorrect(false)
+            setShowError(true)
         })
     }
 
@@ -85,13 +90,13 @@ function AdminLoginForm() {
 
     return (
         <Grid>
-            <Alert Alert variant="filled" severity="success" className={classes.succesAlert}>
-                      با موفقیت وارد شدید    
-            </Alert >
-            <Alert variant="filled" severity="error" className={classes.errorAlert}>
-                نام کاربری یا رمزعبور اشتباه است
-            </Alert>
             <Paper elevation={5} className={classes.paperStyle} >
+                {showCorrect && <Alert Alert variant="filled" severity="success" className={classes.succesAlert}>
+                    با موفقیت وارد شدید
+                </Alert >}
+                {showError && <Alert variant="filled" severity="error" className={classes.errorAlert}>
+                    نام کاربری یا رمزعبور اشتباه است
+                </Alert>}
                 <Grid align='center' direction='rtl'>
                     <Avatar className={classes.avatarStyle}><LockOutlinedIcon /></Avatar>
                     <h2>ورود ادمین</h2>
@@ -119,7 +124,7 @@ function AdminLoginForm() {
                     variant="contained"
                     className={classes.btnstyle}
                     fullWidth
-                    onClick={onLogin}>ورود
+                    onClick={(event) => onLogin(event)}>ورود
                 </Button>
             </Paper>
         </Grid>
