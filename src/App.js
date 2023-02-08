@@ -12,6 +12,10 @@ import AdminPanel from './Pages/AdminPanel/AdminPanel';
 import AddProduct from './Components/AdminPanelComponents/AddProduct/AddProduct';
 import AdminManageProducts from './Components/AdminPanelComponents/AdminManageProducts/AdminManageProducts';
 import Prices from './Pages/Prices/Prices';
+import Explore from './Pages/Explore/Explore';
+import Product from './Pages/Product/Product';
+import Order from './Pages/Order/Order';
+import UserPanel from './Pages/UserPanel/UserPanel';
 function App() {
   const theme = createTheme({
     direction: "rtl",
@@ -35,6 +39,10 @@ function App() {
             <Route path='/adminpanel/addproduct' exact element={<AddProduct />} />
             <Route path='/adminpanel/manageproducts' exact element={<AdminManageProducts />} />
             <Route path='/prices' exact element={<Prices />} />
+            <Route path='/products' exact element={<Explore />} />
+            <Route path='/product/:id' element={<Product />} />
+            <Route path='/order' element={<Order />} />
+            <Route path='/user/panel' element={<UserPanel />} />
           </Routes>
           <Footer />
         </Router>

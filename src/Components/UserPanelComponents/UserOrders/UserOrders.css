@@ -1,0 +1,35 @@
+.user-order-container{
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+
+
+.user-order-paper{
+    width: 100%;
+    min-height: 100vh;
+    margin: 0px auto;
+
+}
+.user-order-card{
+    display: inline-block;
+    width: 230px;
+    height: 230px;
+    background-color: beige;
+    border-radius: 5px;
+    margin: 24px;
+    overflow: hidden;
+    text-align: center;
+}
+.user-order-card h4{
+    color: #454545;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.user-order-card img{
+    width:100px;
+    height: 80px;
+}
+

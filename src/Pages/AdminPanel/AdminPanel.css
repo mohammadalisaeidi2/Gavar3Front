@@ -6,23 +6,22 @@
     position: fixed;
     top: 0;
     right: 0;
-    margin-top: 15vh;
-    height: 80vh;
+    margin-top: 10vh;
+    height: 100vh;
     width: 20vw;
-    border-radius: 30px;
-    background-color: rgb(227, 227, 255);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 .component-container{
     width: 80vw;
     margin-right: 20vw;
     margin-top: 10vh;
     padding:30px 0px;
-    background-color: rgb(246, 246, 246);
     border-radius: 10px;
     
 }
 .menu-items{
-    margin-top: 70%;
+    margin-top: 50%;
     list-style-type: none;
     justify-items: center;
 }
@@ -34,7 +33,7 @@
 .menu-item{
     margin-right: 40px;
     margin-bottom: 40px;
-    border: 1px solid;
+    
     display: block;
     font-size: 18px;
     height: 50px;
@@ -42,6 +41,7 @@
     padding: 0;
     text-align: right;
     border-radius: 5px;
+    cursor: pointer;
 }
 .menu-icon{
     color: #454545;

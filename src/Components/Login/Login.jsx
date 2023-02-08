@@ -13,18 +13,20 @@ const useStyle = makeStyles((theme) => ({
         padding: '30px',
         height: '70vh',
         width: '30vw',
-        margin: "20px auto",
+        margin: "15vh auto",
         borderRadius: "10px",
         fontFamily: "Vazir-Medium"
     },
-    succesAlert:{
-        marginTop:'10vh',
-        margin:'auto',
-        maxWidth:'30vw',
+    succesAlert: {
+        marginTop: '10px',
+        margin: 'auto',
+        maxWidth: '40vw',
+        justifyContent: 'center'
     },
-    errorAlert:{
-        margin:'auto',
-        maxWidth:'30vw',
+    errorAlert: {
+        marginBottom: '20px',
+        textAlign: 'center',
+        justifyContent: 'center'
     },
     avatarStyle: {
         backgroundColor: '#1bbd7e',
@@ -52,10 +54,13 @@ function LoginForm() {
     const classes = useStyle();
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
+    const [showError, setShowError] = useState(false);
+    const [showCorrect, setShowCorrect] = useState(false);
     const [loginReq] = useFetch();
     const navigate = useNavigate();
     const onLogin = (event) => {
         console.log("onLogin function")
+
         event.preventDefault();
         loginReq({
             url: `/api/user/login`,
@@ -65,14 +70,17 @@ function LoginForm() {
                 userPassword
             }
         }).then(res => {
+            setShowError(false)
+            setShowCorrect(true)
             localStorage.setItem("token", res)
+            localStorage.setItem('token-expiration-date',Date.now()+1200000)
             console.log(res)
-            //navigate("/");
+            navigate("/user/panel");
             window.location.reload();
         }).catch(exp => {
             console.log(JSON.stringify(exp))
-            // Todo: use toast
-            alert("incorrect username or password.")
+            setShowCorrect(false)
+            setShowError(true)
         })
     }
 
@@ -81,13 +89,13 @@ function LoginForm() {
 
     return (
         <Grid>
-            <Alert Alert variant="filled" severity="success" className={classes.succesAlert}>
-                با موفقیت وارد شدید
-            </Alert >
-            <Alert variant="filled" severity="error" className={classes.errorAlert}>
-                نام کاربری یا رمزعبور اشتباه است
-            </Alert>
             <Paper elevation={5} className={classes.paperStyle} >
+                {showCorrect && <Alert Alert variant="filled" severity="success" className={classes.succesAlert}>
+                    با موفقیت وارد شدید
+                </Alert >}
+                {showError && <Alert variant="filled" severity="error" className={classes.errorAlert}>
+                    نام کاربری یا رمزعبور اشتباه است
+                </Alert>}
                 <Grid align='center' direction='rtl'>
                     <Avatar className={classes.avatarStyle}><LockOutlinedIcon /></Avatar>
                     <h2>ورود به حساب کاربری</h2>

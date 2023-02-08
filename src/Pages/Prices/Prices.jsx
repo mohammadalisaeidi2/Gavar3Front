@@ -5,32 +5,116 @@ import axios from 'axios';
 
 
 const useStyle = makeStyles((theme) => ({
-    container: {
-        width: '80vw',
-        margin: "20vh auto",
-        borderRadius: "10px",
-        fontFamily: "Vazir-Medium",
-        backgroundColor: "#eee",
-        padding: "20px",
-        justifyContent: "space-between",
-        textAlign: "center"
+    pricesContainer: {
+        width: '100vw',
+        minHeight: '100vh',
+        display: 'inline-block',
+        //backgroundImage: 'linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%)',
+        backgroundImage: 'linear-gradient(to right, #ec77ab 0%, #7873f5 100%)'
+
+    },
+    pricesTableContainer: {
+        width: '70vw',
+        margin: '20vh auto',
+        marginBottom: '15vh',
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+
+
+    },
+    date: {
+        textAlign:'center',
+        position:'fixed',
+        top:'0',
+        right:'0',
+        marginTop:'100px',
+        marginRight:'120px',
+        color: '#222',
+        backgroundColor: 'rgb(193, 192, 143)',
+        borderRadius: '5px',
+        padding: '10px',
+        width: '120px'
+
+    },
+    goldPart: {
+        width: '30%',
+        display: 'inline-block',
+        margin: '10px',
+        backgroundColor: '#ccc',
+        textAlign: 'center',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        paddingRight: '30px',
+        borderRadius: '10px'
+    },
+    dollarPart: {
+        width: '30%',
+        display: 'inline-block',
+        margin: '10px',
+        backgroundColor: '#ccc',
+        textAlign: 'center',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        paddingRight: '50px',
+        borderRadius: '10px'
     },
     goldChart: {
-        backgroundColor: "#bbb",
-        borderCollapse: "collapse",
-        border: "none",
-        borderRadius: "10px"
+
     },
-    chartTitle: {
-        padding: "20px 40px",
-        textAlign: "center",
+    chartGoldTitle: {
+        marginLeft: '30px',
+        marginBottom: '30px',
+        backgroundColor: 'rgb(193, 192, 143)',
+        padding: '5px 0px',
+        borderRadius: '5px'
+
+
+    },
+    chartDollarTitle: {
+        marginLeft: '60px',
+        marginBottom: '30px',
+        backgroundColor: 'rgb(193, 192, 143)',
+        padding: '5px 0px',
+        borderRadius: '5px'
+
 
     },
     chartData: {
-        border: "1px solid",
-        textAlign: "center",
-        padding: "20px 40px",
+        border: '1px solid',
+        padding: '10px',
+        borderRadius: '3px'
+
     },
+    others: {
+        width: '90vw',
+        margin: '0px auto',
+
+
+
+    },
+    othersTitle: {
+        color: '#222',
+        marginRight: '50px',
+        marginBottom: '30px',
+        backgroundColor: 'rgb(193, 192, 143)',
+        borderRadius: '5px',
+        padding: '10px',
+        width: '120px',
+        textAlign:'center',
+    },
+    othersItem: {
+        width: '200px',
+        height: '90px',
+        marginRight: '50px',
+        marginBottom: '30px',
+        backgroundColor: '#eee',
+        display: 'inline-block',
+        color: "#222",
+        textAlign: "center",
+        borderRadius: '5px',
+        paddingTop: "20px"
+    }
 }));
 
 
@@ -641,66 +725,80 @@ function Prices() {
         })
     }, [])
 
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
 
     return (
-        <Grid container className={classes.container}>
-            <Grid item xs={5}>
-                <Typography variant='h5' className={classes.chartTitle}>سکه و طلا</Typography>
-                <table className={classes.goldChart}>
-                    <tr>
-                        <td className={classes.chartData}>سکه امامی </td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_EMAMI').price}</td>
-                    </tr>
-                    <tr>
-                        <td className={classes.chartData}>سکه بهار آزادی</td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_BAHAR').price}</td>
-                    </tr>
-                    <tr>
-                        <td className={classes.chartData}>نیم سکه</td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_NIM').price}</td>
-                    </tr>
-                    <tr>
-                        <td className={classes.chartData}>ربع سکه</td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_ROB').price}</td>
-                    </tr>
-                    <tr>
-                        <td className={classes.chartData}>سکه گرمی</td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_GERAMI').price}</td>
-                    </tr>
-
-                </table>
-            </Grid>
-            <Grid item xs={5}>
-                <Typography variant='h5' className={classes.chartTitle}>نرخ ارز</Typography>
-                <table className={classes.goldChart}>
-                    <tr>
-                        <td className={classes.chartData}>دلار امریکا </td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_GERAMI').price}</td>
-                    </tr>
-                    <tr>
-                        <td className={classes.chartData}> یورو</td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_GERAMI').price}</td>
-                    </tr>
-                    <tr>
-                        <td className={classes.chartData}>درهم </td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_GERAMI').price}</td>
-                    </tr>
-                    <tr>
-                        <td className={classes.chartData}>پوند </td>
-                        <td className={classes.chartData}>{data.find(x => x.slug === 'SEKE_GERAMI').price}</td>
-                    </tr>
-
-                </table>
-            </Grid>
-            <Grid item xs={12}>
-                <div className={classes.other}>
-
+        <div className={classes.pricesContainer}>
+            <div className={classes.pricesTableContainer}>
+                <h3 className={classes.date}>{data[0].last_update}</h3>
+                <div className={classes.goldPart}>
+                    <Typography variant='h5' className={classes.chartGoldTitle}>سکه و طلا</Typography>
+                    <table className={classes.goldChart}>
+                        <tr>
+                            <td className={classes.chartData}>سکه امامی </td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_EMAMI').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}>سکه بهار آزادی</td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_BAHAR').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}>نیم سکه</td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_NIM').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}>ربع سکه</td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_ROB').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}>سکه گرمی</td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_GERAMI').price)}</td>
+                        </tr>
+                    </table>
                 </div>
+                <div className={classes.dollarPart}>
 
-            </Grid>
+                    <Typography variant='h5' className={classes.chartDollarTitle}>نرخ ارز</Typography>
+                    <table className={classes.goldChart}>
+                        <tr>
+                            <td className={classes.chartData}>دلار امریکا </td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_GERAMI').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}> یورو</td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_GERAMI').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}>درهم </td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_GERAMI').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}>پوند </td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'SEKE_GERAMI').price)}</td>
+                        </tr>
+                        <tr>
+                            <td className={classes.chartData}>یوان </td>
+                            <td className={classes.chartData}>{numberWithCommas(data.find(x => x.slug === 'CNY').price)}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-
-        </Grid>
+            <div className={classes.others}>
+                <h3 className={classes.othersTitle}>سایر ارز ها</h3>
+                {data.map((item) => (
+                    <div className={classes.othersItem}>
+                        <h4>{item.name}</h4>
+                        <h4>{numberWithCommas(item.price)}</h4>
+                    </div>
+                ))
+                }
+            </div>
+        </div>
     )
 }
 

@@ -1,0 +1,146 @@
+.user-dashboard-container{
+    width: 80vw;
+    height: 100vh;
+    text-align: center;
+
+}
+.website-info{
+  width: 80vw;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.orders{
+  width: 22%;
+  height: 250px;
+  background-color: #fee7d7;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+.products{
+  width: 22%;
+  height: 250px;
+  background-color: #fef5cc;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+
+}
+.users{
+  width: 22%;
+  height: 250px;
+  background-color: #d0f2fc;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+
+}
+.income{
+  width: 22%;
+  height: 250px;
+  background-color: #d2e8fd;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+.orders span{
+  height: 70px;
+  width: 70px;
+  background-color: #f6ccc2;
+  border-radius: 50%;
+  display: flex;
+  margin: 30px auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.orders span svg{
+  margin: 20px auto;
+  font-size: 30px;
+  
+  color: #a22835;
+}
+.orders p{
+  margin: 2px auto;
+  font-size: 30px;
+  color: #720627
+}
+.orders h5{
+  color: #9a6462;
+}
+.products span{
+  height: 70px;
+  width: 70px;
+  background-color: #f4e6b5;
+  border-radius: 50%;
+  display: flex;
+  margin: 30px auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.products span svg{
+  margin: 20px auto;
+  color: #b47e02;
+  font-size: 30px;
+}
+.products p{
+  margin: 2px auto;
+  font-size: 30px;
+  color: #785411;
+}
+.products h5{
+  color: #968456;
+}
+.users span{
+  height: 70px;
+  width: 70px;
+  background-color: #b4dcf5;
+  border-radius: 50%;
+  display: flex;
+  margin: 30px auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.users span svg{
+  margin: 20px auto;
+  font-size: 30px;
+  
+  color: #0d53b5;
+}
+.users p{
+  margin: 2px auto;
+  font-size: 30px;
+  color: #0f2a77;
+}
+.users h5{
+  color: #4c789b;
+}
+.income span{
+  height: 70px;
+  width: 70px;
+  background-color: #b5d0ee;
+  border-radius: 50%;
+  display: flex;
+  margin: 30px auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.income span svg{
+  margin: 20px auto;
+  font-size: 30px;
+  color: #103894;
+}
+.income p{
+  margin: 2px auto;
+  font-size: 30px;
+  color: #051954;
+}
+.income h5{
+  color: #3b5779;
+}

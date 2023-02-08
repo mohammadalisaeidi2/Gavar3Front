@@ -1,0 +1,72 @@
+.container{
+    margin-top: 10vh;
+    width: 100vw;
+
+
+}
+.products-container{
+    background-color: rgb(255, 255, 255);
+    width: 85vw;
+    margin-right: 15vw;
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+
+
+}
+.sidebar-container{
+
+    position: fixed;
+    width: 15vw;
+    top: 0;
+    right: 0;
+    margin-top: 10vh;
+    height: 100vh;
+}
+.sort-part{
+    width: 90%;
+    margin: 10px auto;
+    min-height: 50px;
+    border: 1px solid;
+    border-radius: 5px;
+    align-items: center;
+}
+.sort-part p{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 40%;
+    margin-right: 7px;
+    margin-bottom: 15px;
+    color: #3d3d3d;
+}
+.sort-part svg{
+    margin-top: 10px;
+}
+.sort-part li{
+    cursor: pointer;
+    font-size: 16px;
+    color: #454545;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+.filter-part{
+    border: 1px solid #454545;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 5px;
+}
+.filter-part p{
+    font-weight: bold;
+    color: #3d3d3d;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.filter-part input{
+    margin-right: 30px;
+    margin-left: 10px;
+}
+.filter-part button{
+    margin-top:20px;
+    margin-right: 25%;
+    height: 30px;
+}

@@ -3,7 +3,8 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, Link, makeStyles } 
 import useFetch from '../../../hooks/useFetch';
 import axios from 'axios';
 import { Delete, Edit } from '@material-ui/icons';
-import EditModal from './EditModal';
+import './AdminManageOrders.css'
+
 
 const useStyle = makeStyles((theme) => ({
     container: {
@@ -67,7 +68,7 @@ const useStyle = makeStyles((theme) => ({
 
 
 
-function AdminManageProducts() {
+function AdminManageOrders() {
     const classes = useStyle();
     const [allProducts, setAllProducts] = useState([]);
     const [shownProducts, setShownProducts] = useState([]);
@@ -121,7 +122,6 @@ function AdminManageProducts() {
 
     return (
         <Grid container className={classes.container}>
-            { showmodal && <EditModal  handleModalClose={handleModalClose}/>}
             {
                 allProducts.map((product, index) => (
                     <Grid key={index} className={classes.product} >
@@ -141,4 +141,4 @@ function AdminManageProducts() {
     )
 }
 
-export default AdminManageProducts
+export default AdminManageOrders
