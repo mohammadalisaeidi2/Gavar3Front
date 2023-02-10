@@ -6,6 +6,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { Alert } from '@material-ui/lab'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const useStyle = makeStyles((theme) => ({
@@ -54,8 +56,6 @@ function LoginForm() {
     const classes = useStyle();
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
-    const [showError, setShowError] = useState(false);
-    const [showCorrect, setShowCorrect] = useState(false);
     const [loginReq] = useFetch();
     const navigate = useNavigate();
     const onLogin = (event) => {
@@ -70,17 +70,35 @@ function LoginForm() {
                 userPassword
             }
         }).then(res => {
-            setShowError(false)
-            setShowCorrect(true)
-            localStorage.setItem("token", res)
-            localStorage.setItem('token-expiration-date',Date.now()+1200000)
-            console.log(res)
-            navigate("/user/panel");
-            window.location.reload();
+            toast.success('با موفقیت وارد شدید', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            setTimeout(() => {
+                localStorage.setItem("token", res)
+                localStorage.setItem('token-expiration-date', Date.now() + 12000000)
+                console.log(res)
+                navigate("/user/panel");
+                window.location.reload();
+            }, 1000)
         }).catch(exp => {
             console.log(JSON.stringify(exp))
-            setShowCorrect(false)
-            setShowError(true)
+            toast.error('نام کاربری یا رمزعبور اشتباه است', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         })
     }
 
@@ -89,13 +107,20 @@ function LoginForm() {
 
     return (
         <Grid>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
             <Paper elevation={5} className={classes.paperStyle} >
-                {showCorrect && <Alert Alert variant="filled" severity="success" className={classes.succesAlert}>
-                    با موفقیت وارد شدید
-                </Alert >}
-                {showError && <Alert variant="filled" severity="error" className={classes.errorAlert}>
-                    نام کاربری یا رمزعبور اشتباه است
-                </Alert>}
+
                 <Grid align='center' direction='rtl'>
                     <Avatar className={classes.avatarStyle}><LockOutlinedIcon /></Avatar>
                     <h2>ورود به حساب کاربری</h2>

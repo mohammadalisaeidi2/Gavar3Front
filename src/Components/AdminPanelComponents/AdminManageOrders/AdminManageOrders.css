@@ -1,0 +1,47 @@
+
+.admin-order-container{
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+
+
+
+.admin-order-paper{
+    width: 100%;
+    min-height: 100vh;
+    margin: 0px auto;
+
+}
+.admin-order-card{
+    display: inline-block;
+    width: 230px;
+    height: 350px;
+    background-color: beige;
+    border-radius: 5px;
+    margin: 24px;
+    overflow: hidden;
+    text-align: center;
+}
+.admin-order-card h4{
+    color: #454545;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.admin-order-card p{
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 3px;
+    
+}
+.admin-order-card img{
+    width: 60px;
+    height: 60px;
+}
+.admin-order-card button{
+    margin-top: 20px;
+}
+
+

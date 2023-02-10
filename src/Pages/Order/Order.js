@@ -1,10 +1,23 @@
 import { Button, TextField } from '@material-ui/core';
 import { ShopOutlined } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
 import './Order.css'
 import jwt_decode from "jwt-decode";
+import { Alert } from '@material-ui/lab';
+import { DatePicker } from "jalali-react-datepicker";
+import { render } from "react-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
+
+
+
+
 
 function Order() {
 
@@ -15,9 +28,13 @@ function Order() {
     const [orderAddress, setOrderAddress] = useState();
     const [orderProducts, setOrderProducts] = useState([]);
     const [orderUserId, setOrderUserId] = useState();
+    const [orderImages, setOrderImages] = useState([]);
 
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
     const [order, setOrder] = useState([]);
+    const navigate = useNavigate();
+
+
 
 
 
@@ -26,11 +43,12 @@ function Order() {
         var neworder = order
         setCart(newcart.splice(index, 1))
         localStorage.setItem('cart', JSON.stringify(cart));
-        window.location.reload();
-
+        console.log('get response')
+        localStorage.setItem('cart', JSON.stringify([]));
+        window.location.reload()
     }
 
-    const onOrder = () => {
+    const onOrder = async () => {
         order.map((item) => (
             setOrderProducts(orderProducts => [...orderProducts, item._id])
         ))
@@ -47,11 +65,28 @@ function Order() {
                 orderUserId,
                 orderProducts,
                 orderPhone,
-                orderAddress
+                orderAddress,
+                orderImages
             }
         }).then(res => {
             console.log('get response')
-            localStorage.setItem('cart',JSON.stringify([]));
+            localStorage.setItem('cart', JSON.stringify([]));
+            toast.success('سفارش با موفقیت اضافه شد', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            setTimeout(() => {
+                navigate('/');
+                window.location.reload()
+            }, 2000)
+
+
         }).catch(exp => {
             console.log("could not fetch p")
         })
@@ -60,28 +95,49 @@ function Order() {
 
 
 
+
+
     useEffect(() => {
-            console.log(orderProducts)
+        console.log(orderProducts)
 
-            cart.map((item) => (
-                getReq({
-                    url: `/api/product/find/` + item.id,
-                    method: "GET",
-                }).then(res => {
-                    console.log('get response')
-                    setOrder(order => [...order, res])
-                }).catch(exp => {
-                    console.log("could not fetch p")
-                })
-            ))
+        cart.map((item) => (
+            getReq({
+                url: `/api/product/find/` + item.id,
+                method: "GET",
+            }).then(res => {
+                console.log('get response')
+                setOrder(order => [...order, res])
+            }).catch(exp => {
+                console.log("could not fetch p")
+            })
+        ))
 
-        
+        order.map((orderr) => (
+            setOrderImages(orderImages => [...orderImages, orderr.productImages[0]])
+        ))
+
+
+
+
 
     }, [])
 
 
     return (
         <div className='order-container'>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+
             <div className='order-preview'>
                 <h3>سبد خرید </h3>
                 {order.map((data, index) => (
@@ -97,7 +153,7 @@ function Order() {
                 ))}
             </div>
             <div className='order-paper'>
-                <h3>تکمیل اطلاعات خرید</h3>
+                <h3> اگر میخواید به آدرس جدید بفرستید</h3>
 
                 <div className='order-address'>
                     <h4>آدرس دریافت محصول</h4>
@@ -114,6 +170,13 @@ function Order() {
                         placeholder=''
                         required className=''
                         onInput={e => { setOrderPhone(e.target.value) }}
+                    />
+                </div>
+                <div className='order-date'>
+                    <h4>انتخاب تاریخ تحویل</h4>
+                    <DatePicker
+                        className='order-datepicker'
+                        label=''
                     />
                 </div>
                 <Button variant='contained' color='primary' onClick={onOrder}>ثبت نهایی سفارش</Button>

@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './UserOrders.css'
 import useFetch from '../../../hooks/useFetch'
 import { Button } from '@material-ui/core';
+import moment from 'jalali-moment'
+
 
 function UserOrders({ user }) {
     const [getReq] = useFetch();
+    const [imageReq] = useFetch();
     const [orders, setOrders] = useState([]);
+    const [productsImages, setproductsImages] = useState([]);
+
 
 
     useEffect(() => {
@@ -24,7 +29,6 @@ function UserOrders({ user }) {
         })
 
 
-
     }, [])
 
 
@@ -35,29 +39,17 @@ function UserOrders({ user }) {
 
 
 
-
-
-
-
-
-
     return (
         <div className='user-order-container'>
             <div className='user-order-paper'>
                 {orders && orders.map((item, index) => (
                     <div className='user-order-card'>
                         <h4>سفارش {index + 1}</h4>
+                        <p style={{ fontWeight: 'bold',color:"#454545" }}> {moment(item.createdAt.substring(0,10)).format('jYYYY/jMM/jDD')}  </p>
                         <div>
-
-
-
-
-                            <img src={'http://localhost:4000/sgtatic/'  } />
-                            <img src={'http://localhost:4000/sgtatic/' } />
-
+                            <img src='http://localhost:4000/static/order.png'/>
                         </div>
                         <Button variant='contained' color='primary' onClick={click}>مشاهده جزیات</Button>
-                        <p>{item.createdAt}</p>
                     </div>
                 ))
                 }

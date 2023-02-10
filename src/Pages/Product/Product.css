@@ -61,7 +61,7 @@
 .title {
     width: 80%;
     height: 60px;
-    border-bottom: 1px solid;
+    border-bottom: 2px solid #f45454;
     margin-bottom: 20px;
 }
 .title h2{

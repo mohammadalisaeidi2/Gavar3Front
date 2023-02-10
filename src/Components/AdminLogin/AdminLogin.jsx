@@ -6,6 +6,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { Navigate, useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { Alert } from '@material-ui/lab'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const useStyle = makeStyles((theme) => ({
@@ -57,7 +60,6 @@ function AdminLoginForm() {
     const [adminUsername, setAdminUsername] = useState("");
     const [adminPassword, setAdminPassword] = useState("");
     const [showError, setShowError] = useState(false);
-    const [showCorrect, setShowCorrect] = useState(false);
     const [loginReq] = useFetch();
     const navigate = useNavigate();
 
@@ -77,13 +79,33 @@ function AdminLoginForm() {
             }
         }).then(res => {
             setShowError(false)
-            setShowCorrect(true)
-            localStorage.setItem("admin-token", res)
-            navigate('/adminpanel')
+            toast.success('باموفقیت وارد شدید', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            setTimeout(() => {
+                localStorage.setItem("admin-token", res)
+                navigate('/adminpanel')
+            }, 2000)
         }).catch(exp => {
             console.log(JSON.stringify(exp));
-            setShowCorrect(false)
-            setShowError(true)
+
+            toast.error('نام کاربری یا رمزعبور اشتباه است', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         })
     }
 
@@ -93,12 +115,19 @@ function AdminLoginForm() {
     return (
         <Grid>
             <Paper elevation={5} className={classes.paperStyle} >
-                {showCorrect && <Alert Alert variant="filled" severity="success" className={classes.succesAlert}>
-                    با موفقیت وارد شدید
-                </Alert >}
-                {showError && <Alert variant="filled" severity="error" className={classes.errorAlert}>
-                    نام کاربری یا رمزعبور اشتباه است
-                </Alert>}
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
+
                 <Grid align='center' direction='rtl'>
                     <Avatar className={classes.avatarStyle}><LockOutlinedIcon /></Avatar>
                     <h2>ورود ادمین</h2>

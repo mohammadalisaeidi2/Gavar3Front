@@ -3,6 +3,8 @@ import { AddAPhotoOutlined } from '@material-ui/icons';
 import React, { useState } from 'react'
 import useFetch from '../../../hooks/useFetch'
 import './AddProduct.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -109,10 +111,10 @@ const useStyle = makeStyles((theme) => ({
   inputImage: {
 
   },
-  btnstyle:{
-    width:'60%',
-    height:'60px',
-    margin:'10px auto'
+  btnstyle: {
+    width: '60%',
+    height: '60px',
+    margin: '10px auto'
   }
 
 }));
@@ -134,7 +136,7 @@ function AddProduct() {
   const [productHasStone, setProductHasStone] = useState("");
   const [tmpAvailablity, setTmpAvailablity] = useState({ "size": "", "wegiht": "" })
   var productScore = 5
-  const[lastId,setLastId] = useState(0);
+  const [lastId, setLastId] = useState(0);
 
 
 
@@ -151,10 +153,20 @@ function AddProduct() {
       data: formData,
       headers: {
         'token': localStorage.getItem('admin-token'),
-        'lastId':lastId,
+        'lastId': lastId,
       },
     }).then(res => {
-      
+      toast.success('تصویر با موفقیت اضافه شد', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
     }).catch(exp => {
     })
   }
@@ -205,13 +217,44 @@ function AddProduct() {
       console.log("ADDED !!")
       console.log(res);
       console.log(lastId)
+      toast.success('محصول با موفقیت اضافه شد', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }).catch(exp => {
       console.log(JSON.stringify(exp));
-      alert("Something went wrong!")
+      toast.error('ثبت محصول با خطا مواجه شد', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     })
   }
   return (
     <Paper elevation={5} className={classes.paperStyle} >
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Typography variant='h4' style={{ marginBottom: "30px" }}>افزودن محصول</Typography>
       <Grid container spacing={3}>
         <Grid item xs={3}>
@@ -377,29 +420,22 @@ function AddProduct() {
         </Button>
 
         <Grid item xs={12} >
-          <Typography variant='h6' style={{marginTop:'50px'}}>افزودن تصویر </Typography>
+          <Typography variant='h6' style={{ marginTop: '50px' }}>افزودن تصویر </Typography>
         </Grid>
         <Grid item xs={12} className={classes.addImageBody}>
-          <input
-            accept="image/*"
-            className={classes.inputImage}
-            id="contained-button-file"
-            multiple
-            type="file"
-            
-          />
-          <Button
-            type='submit'
-            color='primary'
-            variant="contained"
-            className={classes.addImageBtn}
-            >افزودن تصویر
-            <AddAPhotoOutlined style={{ marginRight: "10px" }} />
-          </Button>
+
           <br />
           <form onSubmit={handleSubmitUpload}>
             <input type='file' name='file' onChange={handleFileChangeUpload}></input>
-            <button type='submit'>SEND</button>
+            <Button
+              type='submit'
+              color='primary'
+              variant="contained"
+              className={classes.addImageBtn}
+            >افزودن تصویر
+              <AddAPhotoOutlined style={{ marginRight: "10px" }} />
+            </Button>
+
           </form>
 
           <br />
@@ -414,5 +450,6 @@ function AddProduct() {
     </Paper>
   )
 }
+
 
 export default AddProduct

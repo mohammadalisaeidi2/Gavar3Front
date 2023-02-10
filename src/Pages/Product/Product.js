@@ -58,6 +58,7 @@ function Product() {
     }
 
 
+    
     return (
         <div className='productpage-container'>
             <div className='images'>

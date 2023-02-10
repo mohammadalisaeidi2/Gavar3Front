@@ -1,0 +1,88 @@
+.admin-manageuser-container {
+    width: 70vw;
+    min-height: 100px;
+    margin: 50px auto;
+    align-items: center;
+    border-radius: 10px;
+
+}
+
+.toastBody {
+    font-family: "Vazir-Medium", Arial, Helvetica, sans-serif;
+    color: #10171D;
+    /* #10171D */
+    font-size: 0.875rem !important;
+
+}
+
+
+.admin-manageuser-stat {
+    margin-top: 100px;
+    width: 200px;
+    height: 60px;
+    border-radius: 5px;
+    padding-right: 20px;
+    padding-top: 10px;
+    margin-right: 5%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.admin-manageuser-stat p {
+    font-weight: bold;
+    font-size: 19px;
+    color: #2d2d2d;
+}
+
+
+.admin-manageuser-item {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: inline-block;
+    width: 40%;
+    height: 90px;
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.admin-manageuser-item-wrapper {
+    width: 100%;
+    height: 90px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.admin-manageuser-item-info {
+    width: 70%;
+    height: 80px;
+
+}
+
+.admin-manageuser-item-info h3 {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: #2d2d2d;
+}
+
+.admin-manageuser-item-info p {
+    display: inline-block;
+    margin-right: 10px;
+    color: #2d2d2d;
+}
+
+.admin-manageuser-item-edit {
+    width: 25%;
+    height: 80px;
+    padding: 10px;
+}
+
+.admin-manageuser-item-edit button {
+    background-color: #91851e;
+    color: #fff;
+    margin-top: 10px;
+    width: 80px;
+}

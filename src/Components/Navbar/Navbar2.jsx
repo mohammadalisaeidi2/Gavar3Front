@@ -94,7 +94,7 @@ function Navbar2() {
 
                     <div className={classes.navbarIcons}>
                         {loggedin && <Link to='/user/panel'>
-                            <Person style={{ color: '#454545', marginLeft: "1vw" }} />
+                            <Person style={{ color: '#454545', marginLeft: "1vw",marginTop:'7px' }} />
                         </Link>}
 
                         <Link to='/order'>

@@ -4,6 +4,8 @@ import useFetch from '../../../hooks/useFetch';
 import axios from 'axios';
 import { Delete, Edit } from '@material-ui/icons';
 import EditModal from './EditModal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyle = makeStyles((theme) => ({
     container: {
@@ -23,13 +25,12 @@ const useStyle = makeStyles((theme) => ({
         backgroundColor: "#eee",
         borderRadius: "5px",
         margin: "10px",
-        marginLeft:'30px',
+        marginLeft: '30px',
 
     },
     imageContainer: {
         width: '230px',
         margin: "10px",
-        border: "1px solid",
         height: "150px",
         margin: "10px auto"
     },
@@ -39,7 +40,8 @@ const useStyle = makeStyles((theme) => ({
     },
     productTitle: {
         marginTop: "15px",
-        textAlign: "center"
+        textAlign: "right",
+        marginRight: '5px'
     },
     buttons: {
         marginTop: "50px",
@@ -55,8 +57,9 @@ const useStyle = makeStyles((theme) => ({
     deleteButton: {
         width: '100px',
         height: '50px',
-        border: "2px solid #eb2d2d",
-        color: "#454545",
+        border: "#ee4055",
+        backgroundColor: '#ee4055',
+        color: "#fff",
         marginRight: "20px"
     },
     editModal: {
@@ -91,6 +94,16 @@ function AdminManageProducts() {
             setAllProducts(allProducts.concat(arr));
         }).catch(exp => {
             console.log("could not fetch p")
+            toast.error('دریافت محصولات با خطا مواجه شد', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         })
     }, [])
 
@@ -107,6 +120,16 @@ function AdminManageProducts() {
                 'token': localStorage.getItem("admin-token"),
             },
         }).then(res => {
+            toast.success('محصول با موفقیت حذف شد', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
 
         }).catch(exp => {
             console.log("could not fetch p")
@@ -116,22 +139,34 @@ function AdminManageProducts() {
     const handleModalClose = () => {
         setShowModal(false)
     }
-    
+
 
 
     return (
         <Grid container className={classes.container}>
-            { showmodal && <EditModal  handleModalClose={handleModalClose}/>}
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            {showmodal && <EditModal handleModalClose={handleModalClose} />}
             {
                 allProducts.map((product, index) => (
                     <Grid key={index} className={classes.product} >
                         <div className={classes.imageContainer}>
-                            <img src={'http://localhost:4000/static/'+product.productImages[0]} className={classes.productImage} />
+                            <img src={'http://localhost:4000/static/' + product.productImages[0]} className={classes.productImage} />
                         </div>
                         <Typography className={classes.productTitle} variant='h6'>{product.productTitle}</Typography>
                         <Typography className={classes.productTitle} >{product.productDetile}</Typography>
                         <div className={classes.buttons}>
-                            <Button className={classes.editButton} variant='outlined' onClick={() => { setShowModal(true)}}> <Edit /> </Button>
+                            <Button className={classes.editButton} variant='outlined' onClick={() => { setShowModal(true) }}> <Edit /> </Button>
                             <Button className={classes.deleteButton} variant='outlined' onClick={() => { onDelete(product._id) }}> <Delete /> </Button>
                         </div>
                     </Grid>

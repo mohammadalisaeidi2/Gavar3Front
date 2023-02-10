@@ -1,0 +1,40 @@
+
+.call-container{
+    margin-top: 10vh;
+    width: 100%;
+    height: 100vh;
+    display: inline-block;
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+}
+.call-paper{
+    width: 60vw;
+    height: 400px;
+    margin: 100px auto;
+    background-color: beige;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.call-paper h3{
+    color: #303030;
+    margin-top: 10px;
+    margin-right: 20px;
+    font-size: 23px;
+
+}
+.call-info{
+    width: 40%;
+    height: 300px;
+    margin-top: 50px;
+    padding: 20px;
+    color: #303030;
+}
+.call-logo{
+    width: 40%;
+    height: 300px;
+    margin-top: 50px;
+}
+.call-logo-img{
+    width: 90%;
+    margin-top: 100px;
+}

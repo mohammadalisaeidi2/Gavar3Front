@@ -20,7 +20,7 @@ function Footer() {
                 <div className='footer-link-wrapper'>
                     <div className='footer-link-items'>
                         <h2>درباره ما</h2>
-                        <Link> تماس باما</Link>
+                        <Link to='/callus'> تماس باما</Link>
                         <Link> همکاری باما</Link>
                         <Link> خدمات ما</Link>
                     </div>

@@ -100,7 +100,7 @@ function SingleProduct({ data }) {
                     <img src={'http://localhost:4000/static/' + data.productImages[0]} className={classes.productImage} />
                 </div>
                 <h5 className={classes.productTitle}>{data.productTitle}</h5>
-                <p className={classes.productInfo} >{data.productInfo}</p>
+                <p className={classes.productInfo} >{data.productDetile}</p>
                 <div className={classes.downPart}>
                     <div className={classes.score}>
                         <StarBorder style={{ color: '#f9bc02', fontSize:'25px',marginRight:'5px' }} />

@@ -16,6 +16,7 @@ import Explore from './Pages/Explore/Explore';
 import Product from './Pages/Product/Product';
 import Order from './Pages/Order/Order';
 import UserPanel from './Pages/UserPanel/UserPanel';
+import Callus from './Pages/Callus/Callus';
 function App() {
   const theme = createTheme({
     direction: "rtl",
@@ -33,6 +34,7 @@ function App() {
           <Routes>
             <Route path='/' exact element={<Home />} />
             <Route path='/login' exact element={<LoginForm />} />
+            <Route path='/callus' exact element={<Callus />} />
             <Route path='/adminlogin' exact element={<AdminLoginForm />} />
             <Route path='/signup' exact element={<SignUpForm />} />
             <Route path='/adminpanel' exact element={<AdminPanel />} />

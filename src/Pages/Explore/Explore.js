@@ -34,6 +34,7 @@ function Explore() {
     }, [])
 
 
+
     const handleSort = (i) => {
         switch (i) {
             case 1:
@@ -75,7 +76,7 @@ function Explore() {
                     ))
                 }
             </div>
-            <div className='sidebar-container'>
+            <div className='explore-sidebar-container'>
                 <div className='sort-part'>
                     <p style={{ float: 'left' }}>مرتب سازی:</p>
                     <Sort style={{ float: 'left' }} />

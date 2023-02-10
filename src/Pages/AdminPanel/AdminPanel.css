@@ -1,54 +1,97 @@
-.container{
+.container {
     justify-content: center;
 
 }
-.sidebar-container{
+
+.sidebar-container {
     position: fixed;
     top: 0;
     right: 0;
-    margin-top: 10vh;
     height: 100vh;
     width: 20vw;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+
+.admin-sidebar-info {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+    background-color: #d4d4d4;
+    width: 200px;
+    height: 90px;
+    margin: 10px auto;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.admin-sidebar-info p {
+    margin-top: 50px;
+}
+
+.admin-sidebar-info button {
+    width: 120px;
+    height: 50px;
+    background-color: #ee4055;
+    border-radius: 5px;
+    border: #ee4055;
+    color: #fff;
+    font-family: Vazir-Medium;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 5px auto;
+    padding: 23px;
+    cursor: pointer;
 
 }
-.component-container{
+
+.admin-sidebar-info-exit {
+    color: #fff;
+
+}
+
+
+.component-container {
     width: 80vw;
     margin-right: 20vw;
     margin-top: 10vh;
-    padding:30px 0px;
     border-radius: 10px;
-    
+
 }
-.menu-items{
-    margin-top: 50%;
+
+.menu-items {
+    margin-top: 30px;
     list-style-type: none;
     justify-items: center;
 }
-.menu-items :hover{
+
+.menu-items :hover {
     background-color: rgb(193, 192, 143);
-    
+
 
 }
-.menu-item{
-    margin-right: 40px;
-    margin-bottom: 40px;
-    
-    display: block;
+
+.menu-item {
+    margin-right: 30px;
+    margin-bottom: 20px;
+    display: flex;
     font-size: 18px;
     height: 50px;
     width: 200px;
     padding: 0;
     text-align: right;
+    align-items: center;
     border-radius: 5px;
     cursor: pointer;
 }
-.menu-icon{
+
+.menu-icon {
     color: #454545;
-    margin-top:5px ;
+    margin-top: 5px;
     margin-left: 10px;
 
 }
-.menu-title{
+
+.menu-title {
     margin-top: 0;
 }

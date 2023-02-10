@@ -4,141 +4,89 @@ import useFetch from '../../../hooks/useFetch';
 import axios from 'axios';
 import { Delete, Edit } from '@material-ui/icons';
 import './AdminManageOrders.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import moment from 'jalali-moment'
 
 
-const useStyle = makeStyles((theme) => ({
-    container: {
-        width: '80%',
-        margin: "0 auto",
-        borderRadius: "10px",
-        fontFamily: "Vazir-Medium",
-        backgroundColor: "#fff",
-        padding: "20px",
-        paddingTop: '0',
-        boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
 
-    },
-    product: {
-        width: "250px",
-        height: "400px",
-        backgroundColor: "#eee",
-        borderRadius: "5px",
-        margin: "10px",
-        marginLeft:'30px',
 
-    },
-    imageContainer: {
-        width: '230px',
-        margin: "10px",
-        border: "1px solid",
-        height: "150px",
-        margin: "10px auto"
-    },
-    productImage: {
-        width: "230px",
-        height: "150px",
-    },
-    productTitle: {
-        marginTop: "15px",
-        textAlign: "center"
-    },
-    buttons: {
-        marginTop: "50px",
-
-    },
-    editButton: {
-        color: "#454545",
-        width: '100px',
-        height: '50px',
-        border: "2px solid #6fa8dc",
-        marginRight: "15px"
-    },
-    deleteButton: {
-        width: '100px',
-        height: '50px',
-        border: "2px solid #eb2d2d",
-        color: "#454545",
-        marginRight: "20px"
-    },
-    editModal: {
-        display: 'none'
-    },
-
-}));
 
 
 
 function AdminManageOrders() {
-    const classes = useStyle();
     const [allProducts, setAllProducts] = useState([]);
-    const [shownProducts, setShownProducts] = useState([]);
-    const [showmodal, setShowModal] = useState(false);
-    const [gtReq] = useFetch();
-    const [deleteReq] = useFetch();
+    const [getReq] = useFetch();
+    const [orders, setOrders] = useState([]);
 
 
 
     useEffect(() => {
-        gtReq({
-            url: `/api/product/get`,
+        getReq({
+            url: `/api/order/all/`,
             method: "GET",
         }).then(res => {
-            console.log('hiii')
-            setShownProducts(allProducts)
+            console.log('get response')
             let arr = [];
             for (var i in res) {
                 arr.push(res[i])
             }
-            setAllProducts(allProducts.concat(arr));
+            setOrders(orders.concat(arr));
         }).catch(exp => {
             console.log("could not fetch p")
+            toast.error('دریافت سفارشات با خطا مواجه شد', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         })
+
+
     }, [])
 
-
-
-
-    const onDelete = (id) => {
-        console.log(id)
-        setAllProducts([...allProducts.filter(product => product._id !== id)])
-        gtReq({
-            url: `/api/product/delete/` + id,
-            method: "DELETE",
-            headers: {
-                'token': localStorage.getItem("admin-token"),
-            },
-        }).then(res => {
-
-        }).catch(exp => {
-            console.log("could not fetch p")
-        })
+    const click = () => {
+        console.log(orders)
     }
-
-    const handleModalClose = () => {
-        setShowModal(false)
-    }
-    
-
 
     return (
-        <Grid container className={classes.container}>
-            {
-                allProducts.map((product, index) => (
-                    <Grid key={index} className={classes.product} >
-                        <div className={classes.imageContainer}>
-                            <img src={'http://localhost:4000/static/'+product.productImages[0]} className={classes.productImage} />
+        <div className='admin-order-container'>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            <div className='admin-order-paper'>
+                {orders && orders.map((item, index) => (
+                    <div className='admin-order-card'>
+                        <h4>سفارش {index + 1}</h4>
+                        <div>
+                            <img src='http://localhost:4000/static/order.png' />
                         </div>
-                        <Typography className={classes.productTitle} variant='h6'>{product.productTitle}</Typography>
-                        <Typography className={classes.productTitle} >{product.productDetile}</Typography>
-                        <div className={classes.buttons}>
-                            <Button className={classes.editButton} variant='outlined' onClick={() => { setShowModal(true)}}> <Edit /> </Button>
-                            <Button className={classes.deleteButton} variant='outlined' onClick={() => { onDelete(product._id) }}> <Delete /> </Button>
-                        </div>
-                    </Grid>
+                        <p style={{ fontWeight: 'bold' }}> {item.orderProducts.length}  محصول </p>
+                        <p style={{ fontWeight: 'bold' }}> {moment(item.createdAt.substring(0,10)).format('jYYYY/jMM/jDD')}  </p>
+                        <p style={{ fontWeight: 'bold' }}>آدرس:</p>
+                        <p> {item.orderAddress}  </p>
+                        <Button variant='contained' color='primary' onClick={click}>مشاهده جزیات</Button>
+                    </div>
                 ))
-            }
-        </Grid>
+                }
+            </div>
+        </div>
+
     )
 }
+
 
 export default AdminManageOrders

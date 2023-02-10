@@ -12,34 +12,35 @@ function Bestselling() {
                   <BestsellingItem
                   path='/'
                   label='Alangoo'
-                  src='Images/1.jpeg'
-                  text='النگو تی بتس مت '
+                  src='Images/1.jpg'
+                  text=' گوشواره نگینی   '
                   />
+
                   <BestsellingItem
                   path='/'
                   label='Alangoo'
-                  src='Images/1.jpeg'
-                  text='النگوهعسلیغلسعغیب ست '
+                  src='Images/2.jpeg'
+                  text=' حلقه رز تیفانی '
                   />
                 </ul>
                 <ul className='cards__item'>
                   <BestsellingItem
                   path='/'
                   label='Alangoo'
-                  src='Images/1.jpeg'
-                  text='النگو تی بتس مت '
+                  src='Images/3.jpg'
+                  text=' سرویس ماد گوارسه   '
                   />
                   <BestsellingItem
                   path='/'
                   label='Alangoo'
-                  src='Images/1.jpeg'
-                  text='النگوهعسلیغلسعغیب ست '
+                  src='Images/4.jpeg'
+                  text='انگشتر آلفا زمرد '
                   />
                   <BestsellingItem
                   path='/'
                   label='Alangoo'
-                  src='Images/1.jpeg'
-                  text='النگوهعسلیغلسعغیب ست '
+                  src='Images/5.webp'
+                  text=' سرویس جواهر '
                   />
                 </ul>
             </div>
