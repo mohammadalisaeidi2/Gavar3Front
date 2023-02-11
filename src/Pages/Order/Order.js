@@ -43,8 +43,8 @@ function Order() {
         var neworder = order
         setCart(newcart.splice(index, 1))
         localStorage.setItem('cart', JSON.stringify(cart));
-        console.log('get response')
-        localStorage.setItem('cart', JSON.stringify([]));
+       // console.log('get response')
+       // localStorage.setItem('cart', JSON.stringify([]));
         window.location.reload()
     }
 

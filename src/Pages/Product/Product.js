@@ -12,6 +12,7 @@ function Product() {
     const [getReq] = useFetch();
     const [stone, setStone] = useState('خیر');
     const [size, setSize] = useState();
+    const [mainpic, setMainpic] = useState();
     const goldPrice = 1000000;
 
 
@@ -21,8 +22,8 @@ function Product() {
             method: "GET",
         }).then(res => {
             console.log('get response')
-
             setData(res)
+            setMainpic(res.productImages[0])
 
         }).catch(exp => {
             console.log("could not fetch p")
@@ -34,6 +35,11 @@ function Product() {
             setStone('بله')
         }
     }
+
+    const onChangePic = (image) =>{
+        setMainpic(image)
+    }
+
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -63,16 +69,17 @@ function Product() {
         <div className='productpage-container'>
             <div className='images'>
                 <div className='main-pic'>
-                    {data?.productImages && <img src={'http://localhost:4000/static/' + data.productImages[0]}  ></img>}
+                    {data?.productImages && <img src={'http://localhost:4000/static/' + mainpic}  ></img>}
                 </div>
 
                 {data?.productImages && data.productImages.map((image) => (
-                    <div className='other-pics'>
+                    <div className='other-pics' onClick={() =>onChangePic(image)}>
                         <img src={'http://localhost:4000/static/' + image} ></img>
                     </div>
                 ))}
 
             </div>
+
 
             <div className='infos'>
                 <div className='title'>
