@@ -113,12 +113,7 @@ function AdminPanel() {
               مشاهده سفارش ها
             </a>
           </a>
-          <a className='menu-item'>
-            <PhotoCamera className='menu-icon' />
-            <a className='menu-title'>
-              مدیریت محتوا
-            </a>
-          </a>
+
         </div>
       </div>
       <div className='component-container'>

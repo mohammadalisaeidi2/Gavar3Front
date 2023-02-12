@@ -1,0 +1,30 @@
+
+.SizeGuide-container{
+    margin-top: 10vh;
+    width: 100%;
+    height: 100vh;
+    display: inline-block;
+    background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);
+}
+.SizeGuide-paper{
+    padding-top: 30px;
+    width: 50vw;
+    height: 400px;
+    margin: 100px auto;
+    background-color: beige;
+    border-radius: 10px;
+
+}
+.SizeGuide-paper h3{
+    color: #303030;
+    margin-right: 30px;
+    font-size: 23px;
+
+}
+.SizeGuide-info{
+    width: 90%;
+    height: 300px;
+margin: 50px auto;
+    padding: 20px;
+    color: #303030;
+}

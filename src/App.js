@@ -18,6 +18,7 @@ import Order from './Pages/Order/Order';
 import UserPanel from './Pages/UserPanel/UserPanel';
 import Callus from './Pages/Callus/Callus';
 import NotFound from './Pages/404/NotFound';
+import SizeGuide from './Pages/SizeGuide/SizeGuide';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path='/adminpanel/addproduct' exact element={<AddProduct />} />
             <Route path='/adminpanel/manageproducts' exact element={<AdminManageProducts />} />
             <Route path='/prices' exact element={<Prices />} />
+            <Route path='/SizeGuidance' exact element={<SizeGuide />} />
             <Route path='/products' exact element={<Explore />} />
             <Route path='/product/:id' element={<Product />} />
             <Route path='/order' element={<Order />} />

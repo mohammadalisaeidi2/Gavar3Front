@@ -109,7 +109,6 @@ function Navbar2() {
                     </Link>
                     <Link className={classes.navbarItem} to='/products'>
                         <p>محصولات ما </p>
-                        <ExpandMore style={{ color: '#454545', marginRight: "5px" }} />
                     </Link>
                     <Link className={classes.navbarItem} to='/prices'>
                         <p > قیمت روز طلا</p>
