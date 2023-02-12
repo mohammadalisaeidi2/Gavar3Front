@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AdminPanel.css'
 
 import AdminManageProducts from '../../Components/AdminPanelComponents/AdminManageProducts/AdminManageProducts'
@@ -15,6 +15,8 @@ function AdminPanel() {
   const [showManageUsers, setShowManageUsers] = useState(false);
   const [showorders, setShowOrders] = useState(false);
   const navigate = useNavigate();
+
+
 
 
 
@@ -63,6 +65,8 @@ function AdminPanel() {
 
   const onExit = () => {
     localStorage.removeItem('admin-token');
+    localStorage.removeItem('admin-token-expiration-date');
+
     navigate("/");
     window.location.reload();
 

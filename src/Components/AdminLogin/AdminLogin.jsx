@@ -63,8 +63,19 @@ function AdminLoginForm() {
     const [loginReq] = useFetch();
     const navigate = useNavigate();
 
+    useEffect(() => {
+
+        if (Date.now() < localStorage.getItem('admin-token-expiration-date')) {
+            console.log('logged in........')
+            navigate('/adminpanel')
+        }
 
 
+    }, [])
+
+
+
+    
 
 
     const onLogin = (event) => {
@@ -89,8 +100,10 @@ function AdminLoginForm() {
                 progress: undefined,
                 theme: "colored",
             });
+
             setTimeout(() => {
                 localStorage.setItem("admin-token", res)
+                localStorage.setItem('admin-token-expiration-date', Date.now() + 12000000)
                 navigate('/adminpanel')
             }, 2000)
         }).catch(exp => {

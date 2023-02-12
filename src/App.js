@@ -17,6 +17,9 @@ import Product from './Pages/Product/Product';
 import Order from './Pages/Order/Order';
 import UserPanel from './Pages/UserPanel/UserPanel';
 import Callus from './Pages/Callus/Callus';
+import NotFound from './Pages/404/NotFound';
+
+
 function App() {
   const theme = createTheme({
     direction: "rtl",
@@ -45,6 +48,8 @@ function App() {
             <Route path='/product/:id' element={<Product />} />
             <Route path='/order' element={<Order />} />
             <Route path='/user/panel' element={<UserPanel />} />
+            <Route path='*' element={<NotFound />} />
+
           </Routes>
           <Footer />
         </Router>

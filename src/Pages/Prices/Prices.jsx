@@ -734,7 +734,7 @@ function Prices() {
     return (
         <div className={classes.pricesContainer}>
             <div className={classes.pricesTableContainer}>
-                <h3 className={classes.date}>{data[0].last_update}</h3>
+                <h3 className={classes.date}> ۲۳ بهمن</h3>
                 <div className={classes.goldPart}>
                     <Typography variant='h5' className={classes.chartGoldTitle}>سکه و طلا</Typography>
                     <table className={classes.goldChart}>

@@ -1,7 +1,8 @@
 import { alpha, AppBar, Badge, Button, Divider, IconButton, InputBase, makeStyles, MenuItem, Toolbar, Typography } from "@material-ui/core"
-import { CastConnectedOutlined, ExpandMore, HttpsOutlined, Menu, Person, Search, ShoppingCart } from "@material-ui/icons"
+import { CastConnectedOutlined, ExitToApp, ExpandMore, HttpsOutlined, MoreVert, Person, Search, ShoppingCart } from "@material-ui/icons"
+import Menu from '@material-ui/core/Menu';
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from './logo.png'
 const useStyle = makeStyles((theme) => ({
     appbar: {
@@ -16,7 +17,8 @@ const useStyle = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "right",
         position: "fixed",
-        top: "0"
+        top: "0",
+        paddingLeft:'0'
     },
     navbarContainer: {
 
@@ -40,7 +42,7 @@ const useStyle = makeStyles((theme) => ({
         fontFamily: "Vazir-Medium",
     },
     navbarIcons: {
-        marginRight: "560px",
+        marginRight: "610px",
         display: "flex",
         alignItems: "center",
 
@@ -48,11 +50,15 @@ const useStyle = makeStyles((theme) => ({
 
 }));
 
+
+
 function Navbar2() {
     const classes = useStyle();
     const [cart, setCart] = useState([]);
     const [cartsNumber, setCartsNumber] = useState(0);
     const [loggedin, setLoggedin] = useState(false);
+    const navigate = useNavigate();
+
 
 
     useEffect(() => {
@@ -71,8 +77,28 @@ function Navbar2() {
     }, [])
 
 
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
 
+
+
+    const onExit = () => {
+        setAnchorEl(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('token-expiration-date');
+        navigate("/");
+        window.location.reload();
+
+
+    }
 
     return (
         <div>
@@ -88,14 +114,27 @@ function Navbar2() {
                     <Link className={classes.navbarItem} to='/prices'>
                         <p > قیمت روز طلا</p>
                     </Link>
-                    <Link className={classes.navbarItem}>
+                    <Link to='/SizeGuidance' className={classes.navbarItem}>
                         <p > راهنمای سایز</p>
                     </Link>
 
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <Link to='user/panel' style={{ textDecoration: 'none', color: 'inherit' }}> <MenuItem onClick={handleClose} >پروفایل کاربری</MenuItem></Link>
+                        <MenuItem onClick={onExit}>خروج <ExitToApp style={{ marginRight: '10px' }} /></MenuItem>
+                    </Menu>
+
+
                     <div className={classes.navbarIcons}>
-                        {loggedin && <Link to='/user/panel'>
-                            <Person style={{ color: '#454545', marginLeft: "1vw",marginTop:'7px' }} />
-                        </Link>}
+                        {
+                            loggedin &&
+                            <Person onClick={handleClick} style={{ color: '#454545', marginLeft: "1vw", marginTop: '0px', cursor: 'pointer' }} />
+                        }
 
                         <Link to='/order'>
                             <Badge color="error" badgeContent={cart.length}>
@@ -108,8 +147,6 @@ function Navbar2() {
                             <p>ورود یا عضویت</p>
                         </Button>}
                     </Link>
-
-
                 </Toolbar>
             </AppBar>
 
